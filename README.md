@@ -1,4 +1,4 @@
-README: [RUSSIAN](README_RU.md)
+README: [RUSSIAN](README_RU.MD)
 # LocalAiVtuber-Plugins
 plugins for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
