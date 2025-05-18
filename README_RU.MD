@@ -1,4 +1,4 @@
-README: [ENGLISH](README.md)
+README: [ENGLISH](README.MD)
 # LocalAiVtuber-Plugins
 Плагины для [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
