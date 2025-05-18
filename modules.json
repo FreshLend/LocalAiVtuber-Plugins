@@ -1,0 +1,21 @@
+{
+  "Aya_LLM_GGUF": true,
+  "Chess": false,
+  "Local_EN_to_JA": false,
+  "Local_EN_to_RU": false,
+  "Idle_think": false,
+  "vitsTTS": false,
+  "gpt_sovits": false,
+  "Local_LLM": false,
+  "No_Translate": true,
+  "Rana_LLM_gguf": false,
+  "ChatGPT_Azure": false,
+  "rvc": true,
+  "silero+rvc": true,
+  "silero": false,
+  "TwitchChatFetch": true,
+  "VoiceInput": true,
+  "voicevox": false,
+  "VtubeStudio": false,
+  "YoutubeChatFetch": true
+}
