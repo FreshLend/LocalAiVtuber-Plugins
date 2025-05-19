@@ -9,4 +9,4 @@ Plugins and Fixes for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtub
 
 ## Plugins:
 - Silero+RVC - is the same as a pre-installed RVC only completely local due to Silero instead of edge_tts
-- NLLBTranslator - local translator supporting up to 200 languages ​​with the possibility of auto determination.
+- NLLBTranslator - local translator supporting up to 200 languages ​​with the possibility of auto determination (In the plugin, not all languages, but only the most popular, 39 languages).
