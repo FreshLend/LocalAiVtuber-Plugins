@@ -1,7 +1,11 @@
 README: [ENGLISH](README_EN.md)
-# LocalAiVtuber-Plugins
+# LocalAiVtuber Плагины и Исправления
 Плагины для [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
+
+## Исправления:
+- Отредактирован liveTextbox.py приводящий к ошибки интерфейса gradio
+- Заменена библеотека LangSegment на рабочую версию с GitHub, предыдущая вызывала ошибки.
 
 ## Плагины:
 - Silero+RVC - то же самое, что предварительно установленный RVC только полностью локальный из-за Silero вместо Edge_tts
