@@ -30,7 +30,7 @@ class SileroRVCPlugin(TTSPluginInterface):
     session_path = os.path.join(current_module_directory, "session")
     
     # RVC settings
-    rvc_model_name = 'Neurosama-V3-copy7.pth'
+    rvc_model_name = 'qiqi.pth'
     use_rvc = True
     transpose = 0
     index_rate = 0.75
