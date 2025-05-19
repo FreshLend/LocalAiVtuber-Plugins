@@ -1,6 +1,6 @@
 README: [RUSSIAN](README.md)
 # LocalAiVtuber Plugins and Fixes
-plugins for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
+plugins and fixes for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
 
 ## Fixes:
