@@ -5,6 +5,7 @@
   "ChatGPT_Azure": false,
   "No_Translate": true,
   "Local_EN_to_JA": false,
+  "NLLBTranslator": true,
   "Idle_think": false,
   "vitsTTS": false,
   "gpt_sovits": false,
