@@ -1,6 +1,6 @@
 README: [ENGLISH](README_EN.md)
 # LocalAiVtuber Плагины и Исправления
-плагины и исправления для [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
+Плагины и Исправления для [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
 
 ## Исправления:
