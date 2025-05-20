@@ -4,7 +4,6 @@ README: [ENGLISH](README_EN.md)
 
 
 ## Исправления:
-- Отредактирован liveTextbox.py приводящий к ошибки интерфейса gradio
 - Заменена библиотека LangSegment на рабочую версию с GitHub в fixes/requirements.txt, предыдущая вызывала ошибки.
 
 ## Плагины:
