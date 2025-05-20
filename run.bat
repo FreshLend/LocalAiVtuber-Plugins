@@ -21,7 +21,6 @@ echo ==================================
 echo = 1 - Full installation          =
 echo = 2 - Install plugins / fixes    =
 echo = 3 - Run without installation   =
-echo = 4 - Remove virtual environment =
 echo ==================================
 echo = 0 - Exit                       =
 echo ==================================
@@ -31,7 +30,6 @@ set /p choice="Select action [1-0]: "
 if "%choice%"=="1" goto install
 if "%choice%"=="2" goto download_menu
 if "%choice%"=="3" goto start
-if "%choice%"=="4" goto uninstall
 if "%choice%"=="0" exit /b
 goto menu
 
@@ -219,69 +217,38 @@ goto start
 
 :: Run without installation
 :start
+echo Checking for virtual environment...
+
+set CONDA_ROOT_PREFIX=%cd%\installer_files\conda
+set INSTALL_ENV_DIR=%cd%\installer_files\env
+echo.
+echo Verifying paths...
+echo CONDA_ROOT_PREFIX: %CONDA_ROOT_PREFIX% 
+echo INSTALL_ENV_DIR: %INSTALL_ENV_DIR%
+echo.
+
 if not exist "%INSTALL_ENV_DIR%\python.exe" (
     echo Virtual environment not found! Please run installation first.
     pause
     goto menu
 )
 
-CALL "%CONDA_ROOT_PREFIX%\condabin\conda.bat" activate "%INSTALL_ENV_DIR%"
+:: Check if conda is available
+if not exist "%CONDA_ROOT_PREFIX%\_conda.exe" (
+    echo Conda not found! Please run installation first.
+    pause
+    goto menu
+)
+
+:: Activate environment
+call "%CONDA_ROOT_PREFIX%\condabin\conda.bat" activate "%INSTALL_ENV_DIR%" || (
+    echo Failed to activate virtual environment
+    pause
+    goto menu
+)
+
 echo Starting main.py...
 python main.py
-pause
-goto menu
-
-:: Remove virtual environment
-:uninstall
-echo Checking for virtual environment...
-
-set INSTALL_DIR=%cd%\installer_files
-set CONDA_ROOT_PREFIX=%cd%\installer_files\conda
-set INSTALL_ENV_DIR=%cd%\installer_files\env
-echo.
-echo Verifying paths...
-echo INSTALL_DIR: %INSTALL_DIR%
-echo CONDA_ROOT_PREFIX: %CONDA_ROOT_PREFIX% 
-echo INSTALL_ENV_DIR: %INSTALL_ENV_DIR%
-echo.
-
-if exist "%INSTALL_ENV_DIR%\python.exe" (
-    echo Found valid virtual environment at %INSTALL_ENV_DIR%
-    echo Removing virtual environment...
-    rd /s /q "%INSTALL_ENV_DIR%"
-    if exist "%INSTALL_ENV_DIR%" (
-        echo Failed to remove virtual environment!
-    ) else (
-        echo Virtual environment successfully removed
-    )
-    else (
-        echo Cancelled virtual environment removal
-        pause
-        goto menu
-    )
-) else (
-    if exist "%INSTALL_ENV_DIR%" (
-        echo Found incomplete virtual environment at %INSTALL_ENV_DIR%
-        rd /s /q "%INSTALL_ENV_DIR%"
-        echo Removed incomplete environment
-    ) else (
-        echo Virtual environment not found at %INSTALL_ENV_DIR%
-    )
-)
-
-if exist "%CONDA_ROOT_PREFIX%" (
-    rd /s /q "%CONDA_ROOT_PREFIX%"
-    if exist "%CONDA_ROOT_PREFIX%" (
-        echo Failed to remove Miniconda!
-    ) else (
-        echo Miniconda successfully removed
-    )
-    else (
-        echo Keeping Miniconda installation
-    )
-) else (
-    echo Miniconda not found at %CONDA_ROOT_PREFIX%
-)
 
 pause
 goto menu
