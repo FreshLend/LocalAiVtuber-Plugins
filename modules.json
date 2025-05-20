@@ -1,6 +1,6 @@
 {
   "Local_LLM": false,
-  "Aya_LLM_GGUF": false,
+  "Aya_LLM_GGUF": true,
   "Rana_LLM_gguf": false,
   "ChatGPT_Azure": false,
   "No_Translate": true,
@@ -13,9 +13,9 @@
   "silero+rvc": true,
   "silero": false,
   "voicevox": false,
-  "TwitchChatFetch": false,
-  "YoutubeChatFetch": false,
-  "VoiceInput": false,
-  "Chess": false,
-  "VtubeStudio": false
+  "TwitchChatFetch": true,
+  "YoutubeChatFetch": true,
+  "VoiceInput": true,
+  "Chess": true,
+  "VtubeStudio": true
 }
