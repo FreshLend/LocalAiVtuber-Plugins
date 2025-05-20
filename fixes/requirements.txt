@@ -76,6 +76,7 @@ lightning-utilities==0.11.7
 llvmlite==0.41.1
 loguru==0.7.2
 lxml==5.1.0
+langdetect
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 matplotlib==3.8.2
@@ -112,7 +113,7 @@ pydantic==2.5.3
 pydantic_core==2.14.6
 pydub==0.25.1
 Pygments==2.17.2
-pyopenjtalk==0.3.4
+pyopenjtalk
 pyparsing==3.1.1
 pypinyin==0.51.0
 pyreadline3==3.4.1
