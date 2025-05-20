@@ -229,7 +229,7 @@ class SileroRVCPlugin(TTSPluginInterface):
         """Get available Silero languages"""
         url = f"http://{self.SILERO_URL_LOCAL}:{self.SILERO_PORT}/tts/language"
         try:
-            response = requests.get(url, timeout=20)
+            response = requests.get(url)
             return response.json()
         except Exception as e:
             print(f"Error getting languages: {e}")
@@ -240,7 +240,7 @@ class SileroRVCPlugin(TTSPluginInterface):
         """Get all available Silero speakers"""
         url = f"http://{self.SILERO_URL_LOCAL}:{self.SILERO_PORT}/tts/speakers"
         try:
-            response = requests.get(url, timeout=20)
+            response = requests.get(url)
             return response.json()
         except Exception as e:
             print(f"Error getting speakers: {e}")
@@ -256,7 +256,7 @@ class SileroRVCPlugin(TTSPluginInterface):
         url = f"http://{self.SILERO_URL_LOCAL}:{self.SILERO_PORT}/tts/language"
         data = {"id": choice}
         try:
-            response = requests.post(url, json=data, timeout=2)
+            response = requests.post(url, json=data)
             response.raise_for_status()
             self.current_language = choice
             print(f"Changed language to: {choice}")
