@@ -4,7 +4,6 @@ Plugins and Fixes for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtub
 
 
 ## Fixes:
-- Edited LiveTextBox.py leading to the error of the Gradio interface
 - The Langsegment library was replaced with the working version with Github in fixes/requirements.txt, the previous one caused errors.
 
 ## Plugins:
