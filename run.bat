@@ -120,7 +120,8 @@ echo "%CD%"| findstr /R /C:"[!#\$%&()\*+,;<=>?@\[\]\^`{|}~]" >nul && (
 set INSTALL_DIR=%cd%\installer_files
 set CONDA_ROOT_PREFIX=%cd%\installer_files\conda
 set INSTALL_ENV_DIR=%cd%\installer_files\env
-set MINICONDA_DOWNLOAD_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Windows-x86_64.exe
+:: https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Windows-x86_64.exe
+set MINICONDA_DOWNLOAD_URL=http://127.0.0.1:5000/download/miniconda_installer.exe
 set conda_exists=F
 
 @rem Check for Conda
@@ -205,10 +206,10 @@ if %ERRORLEVEL% neq 0 (
 
 @rem Install dependencies
 echo Installing dependencies...
-call python -m pip install pip==24.0
-call python -m pip install -r requirements.txt
-call python -m pip install llama-cpp-python
-call python -m pip install torch==2.5 torchaudio
+CALL python -m pip install pip==24.0
+CALL python -m pip install -r requirements.txt
+CALL python -m pip install llama-cpp-python
+CALL python -m pip install torch==2.5 torchaudio
 
 @rem Create required directories
 set "conda_path_bin=%INSTALL_ENV_DIR%\bin"
@@ -224,7 +225,7 @@ if not exist "%INSTALL_ENV_DIR%\python.exe" (
     goto menu
 )
 
-call "%CONDA_ROOT_PREFIX%\condabin\conda.bat" activate "%INSTALL_ENV_DIR%"
+CALL "%CONDA_ROOT_PREFIX%\condabin\conda.bat" activate "%INSTALL_ENV_DIR%"
 echo Starting main.py...
 python main.py
 pause
