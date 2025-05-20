@@ -4,7 +4,7 @@ README: [ENGLISH](README_EN.md)
 
 
 ## Исправления:
-- Заменена библиотека LangSegment на рабочую версию с GitHub в fixes/requirements.txt, предыдущая вызывала ошибки.
+- Заменена библиотека LangSegment на рабочую версию с GitHub в [fixes/requirements.txt](fixes/requirements.txt), предыдущая вызывала ошибки.
 
 ## Плагины:
 - Silero+RVC - то же самое, что предварительно установленный RVC только полностью локальный из-за Silero вместо Edge_tts
