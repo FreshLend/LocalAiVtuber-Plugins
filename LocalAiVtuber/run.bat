@@ -1,28 +1,33 @@
 @echo off
 chcp 65001
-color b
 cd /D "%~dp0"
 set PATH=%PATH%;%SystemRoot%\system32
+
+:: Создание структуры папок
+if not exist "downloads" mkdir "downloads"
+if not exist "downloads\plugins" mkdir "downloads\plugins"
+if not exist "downloads\fixes" mkdir "downloads\fixes"
 
 :: GitHub Settings
 set GITHUB_REPO=FreshLend/LocalAiVtuber-Plugins
 set GITHUB_BRANCH=main
-set PLUGINS_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/plugins?ref=%GITHUB_BRANCH%
-set FIXES_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/fixes?ref=%GITHUB_BRANCH%
+set PLUGINS_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/LocalAiVtuber/plugins?ref=%GITHUB_BRANCH%
+set FIXES_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/LocalAiVtuber/fixes?ref=%GITHUB_BRANCH%
 
 :: Main Menu
 :menu
 cls
+color b
 echo.
-echo ################################################
-echo #        Local Ai Vtuber - Control Menu        #
-echo ################################################
+echo ##################################
+echo # Local Ai Vtuber - Control Menu #
+echo ##################################
 echo.
 echo ==================================
 echo = 1 - Full installation          =
 echo = 2 - Install plugins / fixes    =
 echo = 3 - Run without installation   =
-echo ==================================
+echo = ------------------------------ =
 echo = 0 - Exit                       =
 echo ==================================
 echo.
@@ -38,16 +43,16 @@ goto menu
 :download_menu
 cls
 echo.
-echo ###############################################
-echo #          Install Plugins and Fixes          #
-echo ###############################################
+echo ##################################
+echo #   Install Plugins and Fixes    #
+echo ##################################
 echo.
-echo =========================
-echo = 1 - Install plugins   =
-echo = 2 - Install fixes     =
-echo =========================
-echo = 3 - Back to main menu =
-echo =========================
+echo ==================================
+echo = 1 - Install plugins            =
+echo = 2 - Install fixes              =
+echo = ------------------------------ =
+echo = 3 - Back to main menu          =
+echo ==================================
 echo.
 set /p choice="Select action [1-3]: "
 
@@ -70,7 +75,7 @@ set /p plugin_num="Select plugin number to install (or 0 to cancel): "
 if "%plugin_num%"=="0" goto download_menu
 
 echo Installing plugin #%plugin_num%...
-powershell -command "$ErrorActionPreference = 'Stop'; try { $response = Invoke-RestMethod -Uri '%PLUGINS_URL%' -Headers @{'Accept'='application/vnd.github.v3+json'}; $selected = $response[%plugin_num%-1]; $download_url = $selected.download_url; $plugin_name = $selected.name -replace '\.zip$',''; $temp_zip = Join-Path $env:TEMP ('plugin_' + (Get-Date -Format 'yyyyMMddHHmmss') + '.zip'); $temp_dir = Join-Path $env:TEMP ('plugin_' + (Get-Date -Format 'yyyyMMddHHmmss')); Write-Host 'Downloading plugin ' $plugin_name '...'; Invoke-WebRequest -Uri $download_url -OutFile $temp_zip; $dest_path = Join-Path '%cd%' 'plugins'; if(!(Test-Path $dest_path)) { New-Item -ItemType Directory -Path $dest_path | Out-Null }; Write-Host 'Extracting plugin...'; New-Item -ItemType Directory -Path $temp_dir -Force | Out-Null; Expand-Archive -Path $temp_zip -DestinationPath $temp_dir -Force; $extractedFiles = Get-ChildItem -Path $temp_dir; if ($extractedFiles.Count -eq 1 -and $extractedFiles[0].PSIsContainer) { $sourcePath = $extractedFiles[0].FullName; } else { $sourcePath = $temp_dir; }; $finalPath = Join-Path $dest_path $plugin_name; if (Test-Path $finalPath) { Remove-Item $finalPath -Recurse -Force }; Move-Item -Path $sourcePath -Destination $finalPath -Force; Remove-Item $temp_zip -Force; Remove-Item $temp_dir -Recurse -Force; Write-Host 'Plugin successfully installed to ' $finalPath; } catch { Write-Host 'Error installing plugin: ' $_.Exception.Message; if (Test-Path $temp_zip) { Remove-Item $temp_zip -Force }; if (Test-Path $temp_dir) { Remove-Item $temp_dir -Recurse -Force }; exit 1 }"
+powershell -command "$ErrorActionPreference = 'Stop'; try { $response = Invoke-RestMethod -Uri '%PLUGINS_URL%' -Headers @{'Accept'='application/vnd.github.v3+json'}; $selected = $response[%plugin_num%-1]; $download_url = $selected.download_url; $plugin_name = $selected.name -replace '\.zip$',''; $temp_zip = Join-Path $env:TEMP ('plugin_' + (Get-Date -Format 'yyyyMMddHHmmss') + '.zip'); $temp_dir = Join-Path $env:TEMP ('plugin_' + (Get-Date -Format 'yyyyMMddHHmmss')); Write-Host 'Downloading plugin ' $plugin_name '...'; Invoke-WebRequest -Uri $download_url -OutFile $temp_zip; $dest_path = Join-Path '%cd%' 'downloads\plugins'; if(!(Test-Path $dest_path)) { New-Item -ItemType Directory -Path $dest_path | Out-Null }; Write-Host 'Extracting plugin...'; New-Item -ItemType Directory -Path $temp_dir -Force | Out-Null; Expand-Archive -Path $temp_zip -DestinationPath $temp_dir -Force; $extractedFiles = Get-ChildItem -Path $temp_dir; if ($extractedFiles.Count -eq 1 -and $extractedFiles[0].PSIsContainer) { $sourcePath = $extractedFiles[0].FullName; } else { $sourcePath = $temp_dir; }; $finalPath = Join-Path $dest_path $plugin_name; if (Test-Path $finalPath) { Remove-Item $finalPath -Recurse -Force }; Move-Item -Path $sourcePath -Destination $finalPath -Force; Remove-Item $temp_zip -Force; Remove-Item $temp_dir -Recurse -Force; Write-Host 'Plugin successfully installed to ' $finalPath; } catch { Write-Host 'Error installing plugin: ' $_.Exception.Message; if (Test-Path $temp_zip) { Remove-Item $temp_zip -Force }; if (Test-Path $temp_dir) { Remove-Item $temp_dir -Recurse -Force }; exit 1 }"
 if errorlevel 1 (
     echo Error installing plugin
 )
@@ -91,7 +96,7 @@ set /p fix_num="Select fix number to install (or 0 to cancel): "
 if "%fix_num%"=="0" goto download_menu
 
 echo Installing fix #%fix_num%...
-powershell -command "$ErrorActionPreference = 'Stop'; try { $response = Invoke-RestMethod -Uri '%FIXES_URL%' -Headers @{'Accept'='application/vnd.github.v3+json'}; $selected = $response[%fix_num%-1]; $download_url = $selected.download_url; $fix_name = $selected.name; $temp_file = Join-Path $env:TEMP $fix_name; Write-Host 'Downloading fix ' $fix_name '...'; Invoke-WebRequest -Uri $download_url -OutFile $temp_file; $dest_path = Join-Path '%cd%' $fix_name; Move-Item -Path $temp_file -Destination $dest_path -Force; Write-Host 'Fix successfully installed!'; } catch { Write-Host 'Error installing fix: ' $_.Exception.Message; exit 1 }"
+powershell -command "$ErrorActionPreference = 'Stop'; try { $response = Invoke-RestMethod -Uri '%FIXES_URL%' -Headers @{'Accept'='application/vnd.github.v3+json'}; $selected = $response[%fix_num%-1]; $download_url = $selected.download_url; $fix_name = $selected.name; $temp_file = Join-Path $env:TEMP ([System.IO.Path]::GetRandomFileName()); Write-Host 'Downloading fix ' $fix_name '...'; Invoke-WebRequest -Uri $download_url -OutFile $temp_file; $dest_path = Join-Path '%cd%' 'downloads\fixes'; if(!(Test-Path $dest_path)) { New-Item -ItemType Directory -Path $dest_path | Out-Null }; $final_path = Join-Path $dest_path $fix_name; Move-Item -Path $temp_file -Destination $final_path -Force; Write-Host 'Fix successfully installed to ' $final_path; } catch { Write-Host 'Error installing fix: ' $_.Exception.Message; if (Test-Path $temp_file) { Remove-Item $temp_file -Force }; exit 1 }"
 if errorlevel 1 (
     echo Error installing fix
 )
@@ -119,7 +124,7 @@ echo "%CD%"| findstr /R /C:"[!#\$%&()\*+,;<=>?@\[\]\^`{|}~]" >nul && (
 set INSTALL_DIR=%cd%\installer_files
 set CONDA_ROOT_PREFIX=%cd%\installer_files\conda
 set INSTALL_ENV_DIR=%cd%\installer_files\env
-set MINICONDA_DOWNLOAD_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Windows-x86_64.exe
+set MINICONDA_DOWNLOAD_URL=http://127.0.0.1:43034/download/miniconda_installer.exe
 set conda_exists=F
 
 @rem Check for Conda
