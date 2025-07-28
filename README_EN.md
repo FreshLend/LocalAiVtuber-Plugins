@@ -3,7 +3,7 @@ README: [RUSSIAN](README.md)
 Plugins and Fixes for [Local Ai Vtuber 2](https://github.com/0Xiaohei0/LocalAIVtuber2)
 
 ## Installer:
-- run.bat - Simple installation and launch with the ability to download fixes and plugins from this repository
+- [run.bat](LocalAiVtuber2/run.bat) - Simple installation and launch with the ability to download fixes and plugins from this repository
 
 ## Fixes:
 - None yet
@@ -19,10 +19,10 @@ Plugins and Fixes for [Local Ai Vtuber 2](https://github.com/0Xiaohei0/LocalAIVt
 Plugins and Fixes for [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
 ## Installer:
-- run.bat - Simple installation and launch with the ability to download fixes and plugins from this repository
+- [run.bat](LocalAiVtuber/run.bat) - Simple installation and launch with the ability to download fixes and plugins from this repository
 
 ## Fixes:
-- Replaced the LangSegment library with a working version from GitHub in LocalAiVtuber/fixes/requirements.txt, as the previous one caused errors.
+- Replaced the LangSegment library with a working version from GitHub in [LocalAiVtuber/fixes/requirements.txt](LocalAiVtuber/fixes/requirements.txt), as the previous one caused errors.
 
 ## Plugins:
 - Silero+RVC - Same as the pre-installed RVC but fully local due to using Silero instead of Edge_tts
