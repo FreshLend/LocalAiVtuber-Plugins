@@ -3,7 +3,6 @@ chcp 65001
 cd /D "%~dp0"
 set PATH=%PATH%;%SystemRoot%\system32
 
-:: Создание структуры папок
 if not exist "downloads" mkdir "downloads"
 if not exist "downloads\plugins" mkdir "downloads\plugins"
 if not exist "downloads\fixes" mkdir "downloads\fixes"
