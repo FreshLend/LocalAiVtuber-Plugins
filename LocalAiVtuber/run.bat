@@ -8,7 +8,7 @@ if not exist "downloads\plugins" mkdir "downloads\plugins"
 if not exist "downloads\fixes" mkdir "downloads\fixes"
 
 :: GitHub Settings
-set GITHUB_REPO=FreshLend/LocalAiVtuber-Plugins
+set GITHUB_REPO=FreshLend/LocalAiVtuber2-Plugins
 set GITHUB_BRANCH=main
 set PLUGINS_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/LocalAiVtuber/plugins?ref=%GITHUB_BRANCH%
 set FIXES_URL=https://api.github.com/repos/%GITHUB_REPO%/contents/LocalAiVtuber/fixes?ref=%GITHUB_BRANCH%
