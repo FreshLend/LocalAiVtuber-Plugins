@@ -3,7 +3,6 @@ chcp 65001
 cd /D "%~dp0"
 set PATH=%PATH%;%SystemRoot%\system32
 
-:: Создание структуры папок
 if not exist "downloads" mkdir "downloads"
 if not exist "downloads\plugins" mkdir "downloads\plugins"
 if not exist "downloads\fixes" mkdir "downloads\fixes"
@@ -168,7 +167,6 @@ if defined cuda_warning (
 echo Starting installation process...
 cd backend
 
-:: Проверка и создание venv
 if not exist "venv" (
     echo Creating virtual environment...
     python -m venv venv
@@ -319,7 +317,6 @@ if defined cuda_warning (
     )
 )
 
-:: Проверка и активация venv
 if exist "venv\" (
     echo Activating virtual environment...
     call venv\Scripts\activate
