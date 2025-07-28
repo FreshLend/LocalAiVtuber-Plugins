@@ -1,4 +1,20 @@
 README: [ENGLISH](README_EN.md)
+# LocalAiVtuber2 Плагины и Исправления
+Плагины и Исправления для [Local Ai Vtuber 2](https://github.com/0Xiaohei0/LocalAiVtuber2)
+
+## Установщик:
+- [run.bat](LocalAiVtuber2/run.bat) - Простая установка и запуск с возможностью скачивать исправления и плагины с этого репозитория
+
+## Исправления:
+- Пока что нету
+
+## Плагины:
+- Пока что нету
+
+
+
+
+
 # LocalAiVtuber Плагины и Исправления
 Плагины и Исправления для [Local Ai Vtuber](https://github.com/0Xiaohei0/LocalAIVtuber)
 
